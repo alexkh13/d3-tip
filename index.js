@@ -34,6 +34,7 @@
         offset      = d3TipOffset,
         html        = d3TipHTML,
         rootElement = document.body,
+        scrollerElement = document.documentElement,
         node        = initNode(),
         svg         = null,
         point       = null,
@@ -59,9 +60,9 @@
           nodel   = getNodeEl(),
           i       = directions.length,
           coords,
-          scrollTop  = document.documentElement.scrollTop ||
+          scrollTop  = scrollerElement.scrollTop ||
             rootElement.scrollTop,
-          scrollLeft = document.documentElement.scrollLeft ||
+          scrollLeft = scrollerElement.scrollLeft ||
             rootElement.scrollLeft
 
       nodel.html(content)
@@ -166,6 +167,18 @@
     tip.rootElement = function(v) {
       if (!arguments.length) return rootElement
       rootElement = v == null ? v : functor(v)()
+
+      return tip
+    }
+
+    // Public: sets or gets the root element anchor of the tooltip
+    //
+    // v - root element of the tooltip
+    //
+    // Returns root node of tip
+    tip.scrollerElement = function(v) {
+      if (!arguments.length) return scrollerElement
+      scrollerElement = v == null ? v : functor(v)()
 
       return tip
     }
