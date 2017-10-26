@@ -70,8 +70,8 @@
       while (i--) nodel.classed(directions[i], false)
       coords = directionCallbacks.get(dir).apply(this)
       nodel.classed(dir, true)
-        .style('top', (coords.top + poffset[0]) + scrollTop + 'px')
-        .style('left', (coords.left + poffset[1]) + scrollLeft + 'px')
+        .style('top', (coords.top + poffset[0]) + scrollTop - rootElement.offsetTop + 'px')
+        .style('left', (coords.left + poffset[1]) + scrollLeft - rootElement.offsetLeft + 'px')
 
       return tip
     }
@@ -165,7 +165,7 @@
     // Returns root node of tip
     tip.rootElement = function(v) {
       if (!arguments.length) return rootElement
-      rootElement = v == null ? v : functor(v)
+      rootElement = v == null ? v : functor(v)()
 
       return tip
     }
